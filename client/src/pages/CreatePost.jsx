@@ -17,7 +17,7 @@ const CreatePost = () => {
   const [loading, setLoading] = useState(false);
 
   const generateImage = async () => {
-    if(form.prompt){
+    if(form.prompt && form.apiKey){
       try {
         setGeneratingImg(true);
         const response = await fetch('https://dalle-clone-server-6hcc.onrender.com/api/v1/dalle',{
@@ -38,7 +38,7 @@ const CreatePost = () => {
         setGeneratingImg(false);
       }
     }else{
-      alert('Please enter a prompt')
+      alert('Please enter a prompt or the API Key')
     }
   }
 
@@ -58,7 +58,7 @@ const CreatePost = () => {
         })
 
         await response.json();
-        navigate('/');
+        navigate('/dalle-clone');
       } catch (error) {
         alert(error);
       }finally{
